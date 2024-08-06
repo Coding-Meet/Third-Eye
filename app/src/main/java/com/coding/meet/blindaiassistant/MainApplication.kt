@@ -14,9 +14,6 @@ class MainApplication : Application(){
             androidLogger()
             androidContext(this@MainApplication)
             modules(
-                networkModule,
-                databaseModule,
-                repositoryModule,
                 viewmodelModule,
                 appModule,
             )
