@@ -88,9 +88,6 @@ dependencies {
 
     // Gemini Api
     implementation(libs.generativeai)
-
-    // Moshi
-    implementation(libs.moshi.kotlin)
     
     // CameraX
     implementation(libs.androidx.camera.core)
@@ -99,6 +96,10 @@ dependencies {
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.extensions)
 
+    // Koin for Android
+    implementation(libs.koin.androidx.compose)
+
+    implementation(libs.compose.markdown)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
