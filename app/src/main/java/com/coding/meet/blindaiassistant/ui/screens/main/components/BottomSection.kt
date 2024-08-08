@@ -1,7 +1,6 @@
 package com.coding.meet.blindaiassistant.ui.screens.main.components
 
 import android.content.Intent
-import android.speech.tts.TextToSpeech
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.result.ActivityResult
 import androidx.compose.foundation.background
@@ -22,6 +21,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.coding.meet.blindaiassistant.R
+import com.coding.meet.blindaiassistant.ui.navigation.LocalNavControllerProvider
+import com.coding.meet.blindaiassistant.ui.navigation.RouteScreen
 import com.coding.meet.blindaiassistant.util.askSpeechInput
 import com.coding.meet.blindaiassistant.util.detectSwipe
 
@@ -31,8 +32,9 @@ import com.coding.meet.blindaiassistant.util.detectSwipe
 
 @Composable
 fun ColumnScope.BottomSection(
-    voiceResult: ManagedActivityResultLauncher<Intent, ActivityResult>,
+    toolVoiceResult: ManagedActivityResultLauncher<Intent, ActivityResult>,
 ) {
+    val navController = LocalNavControllerProvider.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -41,19 +43,19 @@ fun ColumnScope.BottomSection(
             .pointerInput(Unit) {
                 detectSwipe(
                     onSwipeUp = {
-                        askSpeechInput(voiceResult)
+                        navController.navigate(RouteScreen.Instruction.route)
 //                        showToast(R.string.swipe_up)
                     },
                     onSwipeDown = {
-                        askSpeechInput(voiceResult)
+                        askSpeechInput(toolVoiceResult)
 //                        showToast(R.string.swipe_down)
                     },
                     onSwipeLeft = {
-                        askSpeechInput(voiceResult)
+                        askSpeechInput(toolVoiceResult)
 //                        showToast(R.string.swipe_left)
                     },
                     onSwipeRight = {
-                        askSpeechInput(voiceResult)
+                        askSpeechInput(toolVoiceResult)
 //                        showToast(R.string.swipe_right)
                     },
                 )

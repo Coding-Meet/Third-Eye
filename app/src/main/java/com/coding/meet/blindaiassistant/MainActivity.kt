@@ -27,31 +27,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BlindAIAssistantAppTheme {
-                LaunchedEffect(Unit) {
-                    delay(1000)
-                    if (!hasRequiredPermissions()) {
-                        showToast(R.string.camera_permission_request)
-                        ActivityCompat.requestPermissions(
-                            this@MainActivity, CAMERAX_PERMISSIONS, 0
-                        )
-                    } else {
-                       showToast(R.string.swipe_anywhere_on_the_bottom_of_the_screen_to_activate)
-                    }
-                }
-                NavGraph()
+                NavGraph(this)
             }
         }
     }
-
-    private fun hasRequiredPermissions(): Boolean {
-        return CAMERAX_PERMISSIONS.all {
-            ContextCompat.checkSelfPermission(
-                applicationContext,
-                it
-            ) == PackageManager.PERMISSION_GRANTED
-        }
-    }
-
     override fun onPause() {
         textToSpeech.stop()
         super.onPause()

@@ -1,5 +1,6 @@
 package com.coding.meet.blindaiassistant.ui.navigation
 
+import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
@@ -13,7 +14,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.coding.meet.blindaiassistant.ui.common.LoadingDialog
 import com.coding.meet.blindaiassistant.ui.screens.camera.CameraScreen
+import com.coding.meet.blindaiassistant.ui.screens.instruction.InstructionScreen
 import com.coding.meet.blindaiassistant.ui.screens.main.MainScreen
+import com.coding.meet.blindaiassistant.ui.screens.prompt_write.PromptScreen
 import com.coding.meet.blindaiassistant.ui.screens.result.ResultScreen
 import com.coding.meet.blindaiassistant.util.FadeIn
 import com.coding.meet.blindaiassistant.util.FadeOut
@@ -28,7 +31,7 @@ val LocalNavControllerProvider: ProvidableCompositionLocal<NavHostController> = 
 }
 
 @Composable
-fun NavGraph() {
+fun NavGraph(activity: Activity) {
     val navController = rememberNavController()
     val mainViewModel = viewModel<MainViewModel>()
     val toolViewModel = viewModel<ToolViewModel>()
@@ -43,7 +46,13 @@ fun NavGraph() {
             exitTransition = { FadeOut },
         ) {
             composable(route = RouteScreen.Home.route) {
-                MainScreen(mainViewModel = mainViewModel)
+                MainScreen(mainViewModel = mainViewModel,activity)
+            }
+            composable(route = RouteScreen.Instruction.route) {
+                InstructionScreen()
+            }
+            composable(route = RouteScreen.Prompt.route) {
+                PromptScreen(mainViewModel = mainViewModel)
             }
             composable(route = RouteScreen.Camera.route) {
                 CameraScreen(mainViewModel = mainViewModel)

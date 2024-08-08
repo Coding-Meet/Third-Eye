@@ -44,6 +44,7 @@ import com.coding.meet.blindaiassistant.viewmodels.ToolViewModel
 fun ResultScreen(mainViewModel: MainViewModel, toolViewModel: ToolViewModel) {
     val bitmaps by mainViewModel.bitmaps.collectAsState()
     val currentTools by mainViewModel.currentTools.collectAsState()
+    val currentPrompt by mainViewModel.currentPrompt.collectAsState()
     val context = LocalContext.current
     var answerTxt by remember {
         mutableStateOf<String?>(null)
@@ -60,10 +61,10 @@ fun ResultScreen(mainViewModel: MainViewModel, toolViewModel: ToolViewModel) {
     ) {
         addToastSpeech(R.string.few_seconds_wait_for_response)
         mainViewModel.setLoading(true)
-        if (currentTools == Tools.DescribeImage || currentTools == Tools.ImageToText) {
+        if (currentTools == Tools.DescribeImage || currentTools == Tools.ImageToText || currentTools == Tools.CustomPromptImage) {
             toolViewModel.generateContent(
                 originalBitmap = bitmaps!!,
-                prompt = context.getString(currentTools.prompt),
+                prompt = if(currentTools == Tools.CustomPromptImage) currentPrompt else context.getString(currentTools.prompt),
                 resultFun = {
                     mainViewModel.setLoading(false)
                     answerTxt = it
@@ -79,7 +80,7 @@ fun ResultScreen(mainViewModel: MainViewModel, toolViewModel: ToolViewModel) {
                 })
         } else {
             toolViewModel.generateContent(
-                prompt = context.getString(currentTools.prompt),
+                prompt = currentPrompt,
                 resultFun = {
                     mainViewModel.setLoading(false)
                     answerTxt = it
@@ -125,11 +126,11 @@ fun ResultScreen(mainViewModel: MainViewModel, toolViewModel: ToolViewModel) {
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             item {
-                ChatBubbleItem(currentTools, bitmaps, null)
+                ChatBubbleItem(currentTools, currentPrompt,bitmaps, null)
             }
             answerTxt?.let {
                 item {
-                    ChatBubbleItem(currentTools, bitmaps, it)
+                    ChatBubbleItem(currentTools, currentPrompt, bitmaps, it)
                 }
             }
         }

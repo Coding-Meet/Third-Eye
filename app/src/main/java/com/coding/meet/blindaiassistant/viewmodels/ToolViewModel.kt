@@ -24,8 +24,8 @@ class ToolViewModel : ViewModel() {
     ) {
         viewModelScope.launch {
             try {
-                val response = geminiModel.generateContent(
-                    "Please provide a response in plain text format, without any markdown or special formatting. The response should be clear, concise, and easy to read. :$prompt")
+                val response = geminiModel.generateContent(prompt)
+//                "Please provide a response in plain text format, without any markdown or special formatting. The response should be clear, concise, and easy to read.
                 resultFun(response.text.toString())
             } catch (e: Exception) {
                 errorFun(e.message.toString())

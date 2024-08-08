@@ -24,7 +24,7 @@ import com.coding.meet.blindaiassistant.util.Tools
 import dev.jeziellago.compose.markdowntext.MarkdownText
 
 @Composable
-fun ChatBubbleItem(currentTools: Tools, bitmaps: Bitmap?, answerTxt: String?) {
+fun ChatBubbleItem(currentTools: Tools, currentPrompt: String,bitmaps: Bitmap?, answerTxt: String?) {
     Column(
         horizontalAlignment = if (answerTxt != null) Alignment.Start else Alignment.End,
         modifier = Modifier
@@ -63,12 +63,12 @@ fun ChatBubbleItem(currentTools: Tools, bitmaps: Bitmap?, answerTxt: String?) {
                         contentScale = ContentScale.Crop,
                     )
                     Text(
-                        text = stringResource(id = currentTools.prompt),
+                        if(currentTools == Tools.CustomPromptImage || currentTools == Tools.CustomPrompt) currentPrompt else stringResource(id = currentTools.prompt),
                         modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
                     )
                 } else {
                     Text(
-                        text = stringResource(id = currentTools.prompt),
+                        text = if(currentTools == Tools.CustomPromptImage || currentTools == Tools.CustomPrompt) currentPrompt else stringResource(id = currentTools.prompt),
                         modifier = Modifier.padding(16.dp),
                     )
                 }

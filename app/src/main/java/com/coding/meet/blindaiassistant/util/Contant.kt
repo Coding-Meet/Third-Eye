@@ -9,18 +9,6 @@ import androidx.compose.animation.*
  */
 
 
-enum class ToolsType {
-    DescribeImage,
-    ImageToText,
-    Weather,
-    Talk,
-    Translate,
-    News,
-    InterviewPre,
-    Joke,
-    Recipe,
-    HealthRemedy
-}
 
 enum class SwipeType {
     Normal,

@@ -5,6 +5,8 @@
     <string name="image_to_text">Image To Text</string>
     <string name="weather">Weather</string>
     <string name="talk">Talk</string>
+    <string name="custom_prompt">Custom Prompt</string>
+    <string name="custom_prompt_image">Custom Prompt With Image</string>
     <string name="translate">Translate</string>
     <string name="news">News</string>
     <string name="interview_pre">Interview Pre</string>
@@ -26,21 +28,19 @@
     <string name="voice_text_is_empty">Voice text is empty</string>
     <string name="this_voice_not_available_any_feature">This Voice Not Available Any Feature</string>
     <string name="camera_permission_request">This app requires access to your camera. Please grant the permission to use camera features.</string>
-
-
     <string name="prompt_describe_image">Describe the content or scene shown in this image.</string>
     <string name="prompt_image_to_text">Please convert the text in this image to readable content.</string>
-    <string name="prompt_weather">Provide the current weather conditions for Valencia.</string>
-    <string name="prompt_talk">Engage in a conversation about my recent activities, including running marathons and practicing yoga.</string>
-    <string name="prompt_translate">Translate this text into [target language].</string>
-    <string name="prompt_news">Give me the latest news updates related to physical fitness and marathons.</string>
-    <string name="prompt_interview_pre">Prepare interview questions for a discussion about maintaining a disciplined fitness routine.</string>
-    <string name="prompt_joke">Tell me a joke.</string>
-    <string name="prompt_recipe">Share a recipe that complements an active lifestyle and supports physical fitness.</string>
-    <string name="prompt_health_remedy">Suggest a health remedy for someone who runs marathons and practices yoga daily.</string>
+    <string name="prompt_talk"></string>
     <string name="open">Open </string>
-    <string name="swipe_left_to_capture_image">Swipe Left to Capture Image</string>
-    <string name="swipe_right_to_home_screen">Swipe Right To Home Screen</string>
-    <string name="few_seconds_wait_for_response">Few Seconds Wait for Response</string>
-
+    <string name="swipe_left_to_capture_image">Swipe from right to Left to Capture Image</string>
+    <string name="swipe_right_to_home_screen">Swipe from left to Right To go to Home Screen</string>
+    <string name="few_seconds_wait_for_response">Wait a Few Seconds for Response</string>
+    <string name="submit">Submit</string>
+    <string name="swipe_left_to_speak_prompt">Swipe from right to Left to Speak Prompt</string>
+    <string name="swipe_up_move_camera_to_capture_image">Swipe Up Move Camera To Capture Image</string>
+    <string name="swipe_up_move_result_screen">Swipe Up move result Screen</string>
+    <string name="please_enter_prompt">Please Enter Prompt</string>
+    <string name="enter_the_prompt">Enter The Prompt</string>
+    <string name="swipe_up_to_get_instructions_on_how_to_use_the_app">Swipe up to get instructions on how to use the app</string>
+    <string name="instruction">Instruction</string>
 </resources>

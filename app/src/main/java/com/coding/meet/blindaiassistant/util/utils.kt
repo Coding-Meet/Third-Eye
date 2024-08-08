@@ -29,7 +29,7 @@ fun showToast(message: String, duration: Int = Toast.LENGTH_LONG) {
     val speech: TextToSpeech = KoinPlatform.getKoin().get()
     val isLanguageSupport: Boolean = KoinPlatform.getKoin().get()
     if (isLanguageSupport) {
-        speech.speak(message, TextToSpeech.QUEUE_FLUSH, null, "Codingmeet1")
+        speech.speak(message, TextToSpeech.QUEUE_FLUSH, null, null)
     } else {
         Toast.makeText(context, message, duration).show()
     }
@@ -41,9 +41,22 @@ fun showToast(messageID: Int, duration: Int = Toast.LENGTH_LONG) {
     val context: Context = KoinPlatform.getKoin().get()
     val message = context.getString(messageID)
     if (isLanguageSupport) {
-        speech.speak(message, TextToSpeech.QUEUE_FLUSH, null, "Codingmeet2")
+        speech.speak(message, TextToSpeech.QUEUE_FLUSH, null, null)
     } else {
         Toast.makeText(context, message, duration).show()
+    }
+}
+
+fun showToast(messageID1: Int,messageID2: Int, duration: Int = Toast.LENGTH_LONG) {
+    val speech: TextToSpeech = KoinPlatform.getKoin().get()
+    val isLanguageSupport: Boolean = KoinPlatform.getKoin().get()
+    val context: Context = KoinPlatform.getKoin().get()
+    val message1 = context.getString(messageID1)
+    val message2 = context.getString(messageID2)
+    if (isLanguageSupport) {
+        speech.speak(message1+message2, TextToSpeech.QUEUE_FLUSH, null, null)
+    } else {
+        Toast.makeText(context, message1+message2, duration).show()
     }
 }
 fun pauseVoice(){
@@ -57,7 +70,7 @@ fun addToastSpeech(messageID: Int) {
     val context: Context = KoinPlatform.getKoin().get()
     val message = context.getString(messageID)
     if (isLanguageSupport) {
-        speech.speak(message, TextToSpeech.QUEUE_ADD, null, "Codingmeet3")
+        speech.speak(message, TextToSpeech.QUEUE_ADD, null, null)
     } else {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
@@ -67,7 +80,7 @@ fun addToastSpeech(message: String) {
     val isLanguageSupport: Boolean = KoinPlatform.getKoin().get()
     val context: Context = KoinPlatform.getKoin().get()
     if (isLanguageSupport) {
-        speech.speak(message, TextToSpeech.QUEUE_ADD, null, "Codingmeet3")
+        speech.speak(message, TextToSpeech.QUEUE_ADD, null, null)
     } else {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }

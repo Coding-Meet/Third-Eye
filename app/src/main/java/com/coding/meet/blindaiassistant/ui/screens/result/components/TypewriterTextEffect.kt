@@ -19,7 +19,6 @@ fun TypewriterTextEffect(
     onEffectCompleted: () -> Unit = {},
     displayTextComposable: @Composable (displayedText: String) -> Unit,
 ) {
-    var isCompleted by remember { mutableStateOf(false) }
     var displayedText by remember { mutableStateOf("") }
 
     displayTextComposable(displayedText)

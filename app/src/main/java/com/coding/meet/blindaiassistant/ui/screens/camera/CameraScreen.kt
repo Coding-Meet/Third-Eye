@@ -26,6 +26,7 @@ import com.coding.meet.blindaiassistant.util.showToast
 import com.coding.meet.blindaiassistant.viewmodels.MainViewModel
 import com.coding.meet.blindaiassistant.ui.navigation.LocalNavControllerProvider
 import com.coding.meet.blindaiassistant.util.addToastSpeech
+import com.coding.meet.blindaiassistant.util.pauseVoice
 
 /**
  * Created 30-07-2024 at 06:05 pm
@@ -71,11 +72,13 @@ fun CameraScreen(mainViewModel: MainViewModel) {
                                 mainViewModel.setLoading(false)
                                 navController.navigate(RouteScreen.Result.route) {
                                     popUpTo(RouteScreen.Camera.route) { inclusive = true }
+                                    popUpTo(RouteScreen.Prompt.route) { inclusive = true }
                                 }
                             }
                         )
                     },
                     onSwipeRight = {
+                        pauseVoice()
                         navController.navigateUp()
                     },
                 )
