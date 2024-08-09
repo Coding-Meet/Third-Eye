@@ -4,24 +4,27 @@ import android.app.Activity
 import android.speech.RecognizerIntent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -29,13 +32,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.coding.meet.blindaiassistant.R
 import com.coding.meet.blindaiassistant.ui.navigation.LocalNavControllerProvider
 import com.coding.meet.blindaiassistant.ui.navigation.RouteScreen
+import com.coding.meet.blindaiassistant.ui.theme.boxBorderColor
+import com.coding.meet.blindaiassistant.ui.theme.mainBackgroundColor
+import com.coding.meet.blindaiassistant.ui.theme.textColor
 import com.coding.meet.blindaiassistant.util.Tools
 import com.coding.meet.blindaiassistant.util.addToastSpeech
 import com.coding.meet.blindaiassistant.util.askSpeechInput
@@ -82,9 +90,18 @@ fun PromptScreen(mainViewModel: MainViewModel) {
         }
     Scaffold(
         topBar = {
-            TopAppBar(title = {
-                Text(text = stringResource(id = currentTools.title))
-            },
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = boxBorderColor,
+                    titleContentColor = textColor,
+                    navigationIconContentColor = textColor,
+                ),
+                title = {
+                    Text(
+                        text = stringResource(id = currentTools.title),
+                        fontWeight = FontWeight.Bold
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = {
                         pauseVoice()
@@ -96,7 +113,8 @@ fun PromptScreen(mainViewModel: MainViewModel) {
                         )
                     }
                 })
-        }
+        },
+        containerColor = mainBackgroundColor
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -115,39 +133,51 @@ fun PromptScreen(mainViewModel: MainViewModel) {
                             navController.navigateUp()
                         },
                     )
-                },
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-
+                }
             ) {
             OutlinedTextField(
                 label = { Text(stringResource(R.string.enter_the_prompt)) },
                 maxLines = 5,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = boxBorderColor,
+                    unfocusedBorderColor = boxBorderColor,
+                    focusedLabelColor = boxBorderColor,
+                    unfocusedLabelColor = boxBorderColor,
+                    cursorColor = boxBorderColor,
+                    focusedTextColor = boxBorderColor,
+                    unfocusedTextColor = boxBorderColor
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp)
-                    .padding(horizontal = 8.dp),
-                keyboardActions = KeyboardActions(
-                    onDone = {
-                        validateResult(currentPrompt, currentTools, navController)
-                    }
-                ),
+                    .padding(16.dp),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Done
                 ),
                 value = currentPrompt, onValueChange = {
                     mainViewModel.setCurrentPrompt(it)
                 })
 
             Button(
+                border = BorderStroke(5.dp, boxBorderColor),
+                shape = RoundedCornerShape(10.dp),
                 onClick = {
                     validateResult(currentPrompt, currentTools, navController)
                 },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = boxBorderColor,
+                    contentColor = textColor
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 8.dp),
+                    .height(80.dp)
+                    .padding(horizontal = 16.dp),
             ) {
-                Text(text = stringResource(R.string.submit))
+                Text(text = stringResource(R.string.submit),
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center, fontSize = 26.sp,
+                    lineHeight = 35.sp,
+                    color = textColor)
             }
         }
     }
@@ -158,9 +188,10 @@ fun validateResult(currentPrompt: String, currentTools: Tools, navController: Na
         showToast(R.string.please_enter_prompt)
         speakVoice(currentTools)
     } else {
-        if (currentTools == Tools.CustomPromptImage){
+        pauseVoice()
+        if (currentTools == Tools.CustomPromptImage) {
             navController.navigate(RouteScreen.Camera.route)
-        }else{
+        } else {
             navController.navigate(RouteScreen.Result.route) {
                 popUpTo(RouteScreen.Prompt.route) { inclusive = true }
             }

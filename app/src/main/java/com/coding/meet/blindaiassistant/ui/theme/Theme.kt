@@ -9,7 +9,10 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -49,7 +52,17 @@ fun BlindAIAssistantAppTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+            window.statusBarColor = boxBorderColor.toArgb()
+            window.navigationBarColor = boxBorderColor.toArgb()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                window.navigationBarDividerColor = boxBorderColor.toArgb()
+            }
+        }
+    }
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,

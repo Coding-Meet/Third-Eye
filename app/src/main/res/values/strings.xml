@@ -43,4 +43,5 @@
     <string name="enter_the_prompt">Enter The Prompt</string>
     <string name="swipe_up_to_get_instructions_on_how_to_use_the_app">Swipe up to get instructions on how to use the app</string>
     <string name="instruction">Instruction</string>
+    <string name="home">Home</string>
 </resources>

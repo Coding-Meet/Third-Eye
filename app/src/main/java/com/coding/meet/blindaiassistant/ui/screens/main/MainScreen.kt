@@ -8,6 +8,8 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -15,15 +17,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import com.coding.meet.blindaiassistant.R
+import com.coding.meet.blindaiassistant.ui.navigation.LocalNavControllerProvider
 import com.coding.meet.blindaiassistant.ui.navigation.RouteScreen
 import com.coding.meet.blindaiassistant.ui.screens.main.components.BottomSection
 import com.coding.meet.blindaiassistant.ui.screens.main.components.ToolsListScreen
+import com.coding.meet.blindaiassistant.ui.theme.mainBackgroundColor
+import com.coding.meet.blindaiassistant.util.CAMERAX_PERMISSIONS
 import com.coding.meet.blindaiassistant.util.Tools
 import com.coding.meet.blindaiassistant.util.addToastSpeech
 import com.coding.meet.blindaiassistant.util.showToast
 import com.coding.meet.blindaiassistant.viewmodels.MainViewModel
-import com.coding.meet.blindaiassistant.ui.navigation.LocalNavControllerProvider
-import com.coding.meet.blindaiassistant.util.CAMERAX_PERMISSIONS
 import kotlinx.coroutines.delay
 
 /**
@@ -32,7 +35,7 @@ import kotlinx.coroutines.delay
 
 
 @Composable
-fun MainScreen(mainViewModel: MainViewModel,activity: Activity) {
+fun MainScreen(mainViewModel: MainViewModel, activity: Activity) {
     LaunchedEffect(Unit) {
         delay(500)
         if (!hasRequiredPermissions(activity.applicationContext)) {
@@ -75,12 +78,15 @@ fun MainScreen(mainViewModel: MainViewModel,activity: Activity) {
                 addToastSpeech(R.string.swipe_up_to_get_instructions_on_how_to_use_the_app)
             }
         }
-
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        ToolsListScreen(mainViewModel = mainViewModel)
-        BottomSection(toolVoiceResult = toolVoiceResult)
+    Scaffold(containerColor = mainBackgroundColor) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            ToolsListScreen(mainViewModel = mainViewModel)
+            BottomSection(toolVoiceResult = toolVoiceResult)
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 package com.coding.meet.blindaiassistant.ui.screens.result.components
 
 import android.graphics.Bitmap
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -19,7 +20,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.coding.meet.blindaiassistant.ui.theme.boxBackgroundColor
+import com.coding.meet.blindaiassistant.ui.theme.boxBorderColor
+import com.coding.meet.blindaiassistant.ui.theme.textColor
 import com.coding.meet.blindaiassistant.util.Tools
 import dev.jeziellago.compose.markdowntext.MarkdownText
 
@@ -28,11 +36,14 @@ fun ChatBubbleItem(currentTools: Tools, currentPrompt: String,bitmaps: Bitmap?, 
     Column(
         horizontalAlignment = if (answerTxt != null) Alignment.Start else Alignment.End,
         modifier = Modifier
-            .padding(horizontal = 16.dp)
+            .padding(8.dp)
             .fillMaxWidth(),
     ) {
         Card(
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+            border = BorderStroke(5.dp, boxBorderColor),
+            colors = CardDefaults.cardColors(
+                containerColor = boxBackgroundColor
+            ),
             shape = if (answerTxt != null) {
                 RoundedCornerShape(4.dp, 20.dp, 20.dp, 20.dp)
             } else {
@@ -47,6 +58,10 @@ fun ChatBubbleItem(currentTools: Tools, currentPrompt: String,bitmaps: Bitmap?, 
                     MarkdownText(
                         modifier = Modifier.padding(16.dp),
                         markdown = displayedText,
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            color = textColor
+                        )
                     )
                 }
             } else {
@@ -65,11 +80,15 @@ fun ChatBubbleItem(currentTools: Tools, currentPrompt: String,bitmaps: Bitmap?, 
                     Text(
                         if(currentTools == Tools.CustomPromptImage || currentTools == Tools.CustomPrompt) currentPrompt else stringResource(id = currentTools.prompt),
                         modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+                        fontWeight = FontWeight.Bold,
+                        color = textColor
                     )
                 } else {
                     Text(
                         text = if(currentTools == Tools.CustomPromptImage || currentTools == Tools.CustomPrompt) currentPrompt else stringResource(id = currentTools.prompt),
                         modifier = Modifier.padding(16.dp),
+                        fontWeight = FontWeight.Bold,
+                        color = textColor
                     )
                 }
             }

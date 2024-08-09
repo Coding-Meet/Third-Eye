@@ -1,6 +1,5 @@
 package com.coding.meet.blindaiassistant.ui.screens.result
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +11,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -24,10 +24,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 import com.coding.meet.blindaiassistant.R
 import com.coding.meet.blindaiassistant.ui.navigation.LocalNavControllerProvider
 import com.coding.meet.blindaiassistant.ui.screens.result.components.ChatBubbleItem
+import com.coding.meet.blindaiassistant.ui.theme.boxBorderColor
+import com.coding.meet.blindaiassistant.ui.theme.mainBackgroundColor
+import com.coding.meet.blindaiassistant.ui.theme.textColor
 import com.coding.meet.blindaiassistant.util.Tools
 import com.coding.meet.blindaiassistant.util.addToastSpeech
 import com.coding.meet.blindaiassistant.util.detectSwipe
@@ -97,11 +100,21 @@ fun ResultScreen(mainViewModel: MainViewModel, toolViewModel: ToolViewModel) {
     }
     Scaffold(
         topBar = {
-            TopAppBar(title = {
-                Text(text = stringResource(id = currentTools.title))
-            },
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = boxBorderColor,
+                    titleContentColor = textColor,
+                    navigationIconContentColor = textColor,
+                ),
+                title = {
+                    Text(
+                        text = stringResource(id = currentTools.title),
+                        fontWeight = FontWeight.Bold
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = {
+                        pauseVoice()
                         navController.navigateUp()
                     }) {
                         Icon(
@@ -110,7 +123,8 @@ fun ResultScreen(mainViewModel: MainViewModel, toolViewModel: ToolViewModel) {
                         )
                     }
                 })
-        }
+        },
+        containerColor = mainBackgroundColor
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier
@@ -123,7 +137,6 @@ fun ResultScreen(mainViewModel: MainViewModel, toolViewModel: ToolViewModel) {
                         },
                     )
                 },
-            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             item {
                 ChatBubbleItem(currentTools, currentPrompt,bitmaps, null)

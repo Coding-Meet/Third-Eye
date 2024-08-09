@@ -15,14 +15,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.coding.meet.blindaiassistant.R
 import com.coding.meet.blindaiassistant.ui.navigation.LocalNavControllerProvider
 import com.coding.meet.blindaiassistant.ui.navigation.RouteScreen
+import com.coding.meet.blindaiassistant.ui.theme.boxBackgroundColor
+import com.coding.meet.blindaiassistant.ui.theme.boxBorderColor
+import com.coding.meet.blindaiassistant.ui.theme.textColor
 import com.coding.meet.blindaiassistant.util.askSpeechInput
 import com.coding.meet.blindaiassistant.util.detectSwipe
 
@@ -60,11 +66,17 @@ fun ColumnScope.BottomSection(
                     },
                 )
             }
-            .border(2.dp, Color.Black, RoundedCornerShape(10.dp))
-            .background(Color.Yellow),
+            .border(5.dp, boxBorderColor, RoundedCornerShape(10.dp))
+            .clip(RoundedCornerShape(10.dp))
+            .background(boxBackgroundColor),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = stringResource(R.string.swipe_here), fontSize = 40.sp)
+        Text(text = stringResource(R.string.swipe_here),
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            lineHeight = 35.sp,
+            color = textColor,
+            fontSize = 40.sp)
     }
 }
