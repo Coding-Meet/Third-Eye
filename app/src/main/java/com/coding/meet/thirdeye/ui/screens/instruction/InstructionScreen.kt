@@ -47,7 +47,7 @@ fun InstructionScreen() {
     val appName = stringResource(id = R.string.app_name)
     val voiceInstructionTxt by remember {
         mutableStateOf(
-            "$appName is an innovative application designed to handle and analyze images and text. It provides four main functionalities:\n"+
+            "$appName is an innovative Android application designed to assist blind users by leveraging the power of Gemini AI. The app provides advanced functionalities to enhance accessibility and support daily tasks through voice commands and AI-powered features. It provides four main functionalities:\n"+
                     "1. Custom Prompt\n" +
                     "Purpose: Allows you to enter a custom query or instruction.\n" +
                     "2. Custom Prompt with Image\n" +
@@ -110,7 +110,7 @@ fun InstructionScreen() {
                         fontWeight = FontWeight.Bold,
                     ),
                     markdown = """
-                        ${stringResource(id = R.string.app_name)} is an innovative application designed to handle and analyze images and text. It provides four main functionalities:
+                        ${stringResource(id = R.string.app_name)} is an innovative Android application designed to assist blind users by leveraging the power of Gemini AI. The app provides advanced functionalities to enhance accessibility and support daily tasks through voice commands and AI-powered features. It provides four main functionalities:
 
                         1. **Custom Prompt**
                         2. **Custom Prompt with Image**

@@ -13,6 +13,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
@@ -25,6 +26,7 @@ import com.coding.meet.thirdeye.ui.theme.mainBackgroundColor
 import com.coding.meet.thirdeye.util.CAMERAX_PERMISSIONS
 import com.coding.meet.thirdeye.util.Tools
 import com.coding.meet.thirdeye.util.addToastSpeech
+import com.coding.meet.thirdeye.util.pauseVoice
 import com.coding.meet.thirdeye.util.showToast
 import com.coding.meet.thirdeye.viewmodels.MainViewModel
 import kotlinx.coroutines.delay
@@ -51,6 +53,7 @@ fun HomeScreen(mainViewModel: MainViewModel, activity: Activity) {
             addToastSpeech(R.string.swipe_up_to_get_instructions_on_how_to_use_the_app)
         }
     }
+    val context = LocalContext.current
     val navController = LocalNavControllerProvider.current
     val toolVoiceResult =
         rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -61,7 +64,7 @@ fun HomeScreen(mainViewModel: MainViewModel, activity: Activity) {
                 val voiceText = results[0].trim()
                 if (voiceText.isNotEmpty()) {
                     val toolsSelect = Tools.entries.find { tools ->
-                        voiceText.contains(tools.name, ignoreCase = true)
+                        voiceText.contains(context.getString(tools.title), ignoreCase = true)
                     }
                     if (toolsSelect != null) {
                         toolsDetect(mainViewModel, toolsSelect, navController)
@@ -99,6 +102,7 @@ fun toolsDetect(
     navController: NavController,
 ) {
     mainViewModel.onToolsSelected(toolsSelect)
+    pauseVoice()
 //    showToast(messageID1 = R.string.open, messageID2 = toolsSelect.title)
     mainViewModel.onTakePhoto(null)
     if (toolsSelect == Tools.DescribeImage || toolsSelect == Tools.ImageToText) {

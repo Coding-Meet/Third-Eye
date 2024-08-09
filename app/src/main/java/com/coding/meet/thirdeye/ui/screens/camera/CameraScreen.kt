@@ -11,7 +11,10 @@ import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
@@ -19,14 +22,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import com.coding.meet.thirdeye.R
+import com.coding.meet.thirdeye.ui.navigation.LocalNavControllerProvider
 import com.coding.meet.thirdeye.ui.navigation.RouteScreen
+import com.coding.meet.thirdeye.util.Tools
+import com.coding.meet.thirdeye.util.addToastSpeech
 import com.coding.meet.thirdeye.util.detectSwipe
+import com.coding.meet.thirdeye.util.pauseVoice
 import com.coding.meet.thirdeye.util.showToast
 import com.coding.meet.thirdeye.viewmodels.MainViewModel
-import com.coding.meet.thirdeye.ui.navigation.LocalNavControllerProvider
-import com.coding.meet.thirdeye.util.addToastSpeech
-import com.coding.meet.thirdeye.util.pauseVoice
-import com.coding.meet.thirdeye.R
+
 /**
  * Created 30-07-2024 at 06:05 pm
  */
@@ -34,7 +39,7 @@ import com.coding.meet.thirdeye.R
 @Composable
 fun CameraScreen(mainViewModel: MainViewModel) {
     val navController = LocalNavControllerProvider.current
-
+    val currentTools by mainViewModel.currentTools.collectAsState()
     val context = LocalContext.current
     val controller = remember {
         LifecycleCameraController(context).apply {
@@ -67,11 +72,16 @@ fun CameraScreen(mainViewModel: MainViewModel) {
                             context = context,
                             controller = controller,
                             onPhotoTaken = {
+                                pauseVoice()
                                 mainViewModel.onTakePhoto(it)
                                 mainViewModel.setLoading(false)
                                 navController.navigate(RouteScreen.Result.route) {
-                                    popUpTo(RouteScreen.Camera.route) { inclusive = true }
-                                    popUpTo(RouteScreen.Prompt.route) { inclusive = true }
+                                    if (currentTools == Tools.DescribeImage || currentTools == Tools.ImageToText) {
+                                        popUpTo(RouteScreen.Camera.route) { inclusive = true }
+                                    } else {
+                                        popUpTo(RouteScreen.Camera.route) { inclusive = true }
+                                        popUpTo(RouteScreen.Prompt.route) { inclusive = true }
+                                    }
                                 }
                             }
                         )
