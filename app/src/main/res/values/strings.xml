@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Blind AI Assistant App</string>
+    <string name="app_name">Third Eye</string>
     <string name="image_prompt">Please provide a brief summary of the following image. Include key details such as the main subjects or objects, the setting or context, and any notable features or actions. Keep the description short and to the point.</string>
     <string name="describe_image">Describe Image</string>
     <string name="image_to_text">Image To Text</string>

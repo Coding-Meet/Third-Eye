@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.LaunchedEffect
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.coding.meet.blindaiassistant.ui.navigation.NavGraph
 import com.coding.meet.blindaiassistant.ui.theme.BlindAIAssistantAppTheme

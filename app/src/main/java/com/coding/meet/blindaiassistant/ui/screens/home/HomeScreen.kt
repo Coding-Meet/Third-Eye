@@ -39,10 +39,13 @@ fun HomeScreen(mainViewModel: MainViewModel, activity: Activity) {
     LaunchedEffect(Unit) {
         delay(500)
         if (!hasRequiredPermissions(activity.applicationContext)) {
-            showToast(R.string.camera_permission_request)
             ActivityCompat.requestPermissions(
                 activity, CAMERAX_PERMISSIONS, 0
             )
+            delay(500)
+            showToast(R.string.camera_permission_request)
+            addToastSpeech(R.string.swipe_anywhere_on_the_bottom_of_the_screen_to_activate)
+            addToastSpeech(R.string.swipe_up_to_get_instructions_on_how_to_use_the_app)
         } else {
             showToast(R.string.swipe_anywhere_on_the_bottom_of_the_screen_to_activate)
             addToastSpeech(R.string.swipe_up_to_get_instructions_on_how_to_use_the_app)
