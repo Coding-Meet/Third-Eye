@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.coding.meet.blindaiassistant"
+    namespace = "com.coding.meet.thirdeye"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.coding.meet.blindaiassistant"
+        applicationId = "com.coding.meet.thirdeye"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
