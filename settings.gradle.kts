@@ -20,6 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Blind AI Assistant App"
+rootProject.name = "Third Eye"
 include(":app")
  
