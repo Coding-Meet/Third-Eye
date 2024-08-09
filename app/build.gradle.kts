@@ -83,8 +83,8 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.compose)
 
-    // Lottie
-    implementation(libs.lottie.compose)
+    // Splash API
+    implementation(libs.androidx.core.splashscreen)
 
     // Gemini Api
     implementation(libs.generativeai)
@@ -99,6 +99,7 @@ dependencies {
     // Koin for Android
     implementation(libs.koin.androidx.compose)
 
+    // Markdown
     implementation(libs.compose.markdown)
 
     testImplementation(libs.junit)

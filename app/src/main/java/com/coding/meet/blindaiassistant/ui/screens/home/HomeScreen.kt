@@ -1,4 +1,4 @@
-package com.coding.meet.blindaiassistant.ui.screens.main
+package com.coding.meet.blindaiassistant.ui.screens.home
 
 import android.app.Activity
 import android.content.Context
@@ -19,8 +19,8 @@ import androidx.navigation.NavController
 import com.coding.meet.blindaiassistant.R
 import com.coding.meet.blindaiassistant.ui.navigation.LocalNavControllerProvider
 import com.coding.meet.blindaiassistant.ui.navigation.RouteScreen
-import com.coding.meet.blindaiassistant.ui.screens.main.components.BottomSection
-import com.coding.meet.blindaiassistant.ui.screens.main.components.ToolsListScreen
+import com.coding.meet.blindaiassistant.ui.screens.home.components.BottomSection
+import com.coding.meet.blindaiassistant.ui.screens.home.components.ToolsListScreen
 import com.coding.meet.blindaiassistant.ui.theme.mainBackgroundColor
 import com.coding.meet.blindaiassistant.util.CAMERAX_PERMISSIONS
 import com.coding.meet.blindaiassistant.util.Tools
@@ -35,7 +35,7 @@ import kotlinx.coroutines.delay
 
 
 @Composable
-fun MainScreen(mainViewModel: MainViewModel, activity: Activity) {
+fun HomeScreen(mainViewModel: MainViewModel, activity: Activity) {
     LaunchedEffect(Unit) {
         delay(500)
         if (!hasRequiredPermissions(activity.applicationContext)) {
@@ -96,7 +96,7 @@ fun toolsDetect(
     navController: NavController,
 ) {
     mainViewModel.onToolsSelected(toolsSelect)
-    showToast(messageID1 = R.string.open, messageID2 = toolsSelect.title)
+//    showToast(messageID1 = R.string.open, messageID2 = toolsSelect.title)
     mainViewModel.onTakePhoto(null)
     if (toolsSelect == Tools.DescribeImage || toolsSelect == Tools.ImageToText) {
         navController.navigate(RouteScreen.Camera.route)

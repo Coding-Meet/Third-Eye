@@ -8,11 +8,11 @@ enum class Tools(
 ) {
     CustomPrompt(
         title = R.string.custom_prompt,
-        prompt = R.string.prompt_talk
+        prompt = R.string.image_prompt
     ),
     CustomPromptImage(
         title = R.string.custom_prompt_image,
-        prompt = R.string.prompt_talk
+        prompt = R.string.image_prompt
     ),
     DescribeImage(
         title = R.string.describe_image,

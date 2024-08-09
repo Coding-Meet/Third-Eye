@@ -45,42 +45,21 @@ import dev.jeziellago.compose.markdowntext.MarkdownText
 fun InstructionScreen() {
     val navController = LocalNavControllerProvider.current
     val appName = stringResource(id = R.string.app_name)
-    val instructionTxt by remember {
+    val voiceInstructionTxt by remember {
         mutableStateOf(
             "$appName is an innovative application designed to handle and analyze images and text. It provides four main functionalities:\n"+
-            "1. Custom Prompt\n" +
-                    "Purpose: Allows users to enter a custom query or instruction.\n" +
-                    "How to Use:\n" +
-                    "Open the app and navigate to the prompt input section.\n" +
-                    "Enter your custom instruction or query in the provided text box.\n" +
-                    "Submit the prompt by pressing the designated button (e.g., \"Send,\" \"Submit\").\n" +
-                    "The app will process your input and provide a response based on your query.\n" +
+                    "1. Custom Prompt\n" +
+                    "Purpose: Allows you to enter a custom query or instruction.\n" +
                     "2. Custom Prompt with Image\n" +
-                    "Purpose: Lets users combine a custom prompt with an image for more context-specific responses.\n" +
-                    "How to Use:\n" +
-                    "Open the app and go to the section where you can input a custom prompt and upload an image.\n" +
-                    "Enter your custom instruction or query in the text box.\n" +
-                    "Upload or take a photo by selecting the image upload option.\n" +
-                    "Submit both the prompt and image by pressing the appropriate button.\n" +
-                    "The app will analyze the image and the prompt to generate a response that considers both elements.\n" +
+                    "Purpose: Combine a custom prompt with an image for more context-specific responses.\n" +
                     "3. Describe Image\n" +
-                    "Purpose: Provides a textual description of an uploaded or captured image.\n" +
-                    "How to Use:\n" +
-                    "Open the app and navigate to the image description feature.\n" +
-                    "Upload or capture an image using the provided options.\n" +
-                    "Submit the image for processing.\n" +
-                    "The app will analyze the image and generate a descriptive text that summarizes its content.\n" +
+                    "Purpose: Provides you a textual description of an uploaded or captured image.\n" +
                     "4. Image to Text\n" +
-                    "Purpose: Extracts and converts text from an image into editable and searchable text.\n" +
-                    "How to Use:\n" +
-                    "Open the app and go to the image-to-text conversion section.\n" +
-                    "Upload or capture an image that contains text.\n" +
-                    "Submit the image for text extraction.\n" +
-                    "The app will process the image and provide the extracted text, which you can view, copy, or save."
+                    "Purpose: Extracts and converts text from an image into editable and searchable text.\n"
         )
     }
     LaunchedEffect(Unit) {
-        showToast(instructionTxt)
+        showToast(voiceInstructionTxt)
         addToastSpeech(R.string.swipe_right_to_home_screen)
     }
     Scaffold(
@@ -142,7 +121,7 @@ fun InstructionScreen() {
 
                         ### 1. Custom Prompt
 
-                        - **Purpose**: Allows users to enter a custom query or instruction.
+                        - **Purpose**: Allows you to enter a custom query or instruction.
                         - **How to Use**:
                           1. Open the app and navigate to the custom prompt input section.
                           2. Enter your custom instruction or query in the provided text box.
@@ -161,7 +140,7 @@ fun InstructionScreen() {
 
                         ### 3. Describe Image
 
-                        - **Purpose**: Provides a textual description of an uploaded or captured image.
+                        - **Purpose**: Provides you a textual description of an uploaded or captured image.
                         - **How to Use**:
                           1. Open the app and navigate to the image description feature.
                           2. Upload or capture an image using the provided options.

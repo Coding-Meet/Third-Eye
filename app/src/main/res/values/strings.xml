@@ -3,22 +3,13 @@
     <string name="image_prompt">Please provide a brief summary of the following image. Include key details such as the main subjects or objects, the setting or context, and any notable features or actions. Keep the description short and to the point.</string>
     <string name="describe_image">Describe Image</string>
     <string name="image_to_text">Image To Text</string>
-    <string name="weather">Weather</string>
-    <string name="talk">Talk</string>
     <string name="custom_prompt">Custom Prompt</string>
     <string name="custom_prompt_image">Custom Prompt With Image</string>
-    <string name="translate">Translate</string>
-    <string name="news">News</string>
-    <string name="interview_pre">Interview Pre</string>
-    <string name="joke">Joke</string>
-    <string name="recipe">Recipe</string>
-    <string name="health_remedy">Health Remedy</string>
     <string name="swipe_up">Swipe Up</string>
     <string name="swipe_down">Swipe Down</string>
     <string name="swipe_left">Swipe Left</string>
     <string name="swipe_right">Swipe Right</string>
     <string name="swipe_here">Swipe Here</string>
-    <string name="loading">Loading...</string>
     <string name="language_is_not_supported">Language is not supported</string>
     <string name="error_text_to_speech">Error text to speech</string>
     <string name="swipe_anywhere_on_the_bottom_of_the_screen_to_activate">Swipe anywhere on the bottom of the screen to activate voice</string>
@@ -30,7 +21,6 @@
     <string name="camera_permission_request">This app requires access to your camera. Please grant the permission to use camera features.</string>
     <string name="prompt_describe_image">Describe the content or scene shown in this image.</string>
     <string name="prompt_image_to_text">Please convert the text in this image to readable content.</string>
-    <string name="prompt_talk"></string>
     <string name="open">Open </string>
     <string name="swipe_left_to_capture_image">Swipe from right to Left to Capture Image</string>
     <string name="swipe_right_to_home_screen">Swipe from left to Right To go to Home Screen</string>
@@ -43,5 +33,4 @@
     <string name="enter_the_prompt">Enter The Prompt</string>
     <string name="swipe_up_to_get_instructions_on_how_to_use_the_app">Swipe up to get instructions on how to use the app</string>
     <string name="instruction">Instruction</string>
-    <string name="home">Home</string>
 </resources>

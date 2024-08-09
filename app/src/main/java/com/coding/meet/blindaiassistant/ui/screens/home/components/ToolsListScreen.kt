@@ -1,4 +1,4 @@
-package com.coding.meet.blindaiassistant.ui.screens.main.components
+package com.coding.meet.blindaiassistant.ui.screens.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.coding.meet.blindaiassistant.ui.navigation.NavGraph
 import com.coding.meet.blindaiassistant.ui.theme.BlindAIAssistantAppTheme
 import org.koin.android.ext.android.inject
@@ -14,6 +15,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContent {
             BlindAIAssistantAppTheme {
                 NavGraph(this)

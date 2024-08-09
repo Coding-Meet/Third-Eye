@@ -2,7 +2,6 @@ package com.coding.meet.blindaiassistant.util
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
@@ -12,8 +11,6 @@ import androidx.activity.result.ActivityResult
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.pointer.PointerInputScope
 import com.coding.meet.blindaiassistant.R
 import org.koin.mp.KoinPlatform

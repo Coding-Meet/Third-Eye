@@ -15,7 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.coding.meet.blindaiassistant.ui.common.LoadingDialog
 import com.coding.meet.blindaiassistant.ui.screens.camera.CameraScreen
 import com.coding.meet.blindaiassistant.ui.screens.instruction.InstructionScreen
-import com.coding.meet.blindaiassistant.ui.screens.main.MainScreen
+import com.coding.meet.blindaiassistant.ui.screens.home.HomeScreen
 import com.coding.meet.blindaiassistant.ui.screens.prompt_write.PromptScreen
 import com.coding.meet.blindaiassistant.ui.screens.result.ResultScreen
 import com.coding.meet.blindaiassistant.util.FadeIn
@@ -27,7 +27,7 @@ import com.coding.meet.blindaiassistant.viewmodels.ToolViewModel
  * Created 28-02-2024 at 03:04 pm
  */
 val LocalNavControllerProvider: ProvidableCompositionLocal<NavHostController> = staticCompositionLocalOf {
-    error("No StringResources provided")
+    error("No Nav Controller provided")
 }
 
 @Composable
@@ -40,13 +40,12 @@ fun NavGraph(activity: Activity) {
     CompositionLocalProvider(LocalNavControllerProvider provides navController) {
         NavHost(
             navController = navController,
-            route = "ScreenGraph",
             startDestination = RouteScreen.Home.route,
             enterTransition = { FadeIn },
             exitTransition = { FadeOut },
         ) {
             composable(route = RouteScreen.Home.route) {
-                MainScreen(mainViewModel = mainViewModel,activity)
+                HomeScreen(mainViewModel = mainViewModel,activity)
             }
             composable(route = RouteScreen.Instruction.route) {
                 InstructionScreen()
