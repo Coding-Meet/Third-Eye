@@ -47,7 +47,7 @@ fun InstructionScreen() {
     val appName = stringResource(id = R.string.app_name)
     val voiceInstructionTxt by remember {
         mutableStateOf(
-            "$appName is an innovative Android application designed to assist blind users by leveraging the power of Gemini AI. The app provides advanced functionalities to enhance accessibility and support daily tasks through voice commands and AI-powered features. It provides four main functionalities:\n"+
+            "$appName is an innovative Android application designed to assist blind people by leveraging the power of Gemini AI. The app provides advanced functionalities to enhance accessibility and support daily tasks through voice commands and AI-powered features. It provides four main functionalities:\n"+
                     "1. Custom Prompt\n" +
                     "Purpose: Allows you to enter a custom query or instruction.\n" +
                     "2. Custom Prompt with Image\n" +
@@ -55,7 +55,7 @@ fun InstructionScreen() {
                     "3. Describe Image\n" +
                     "Purpose: Provides you a textual description of an uploaded or captured image.\n" +
                     "4. Image to Text\n" +
-                    "Purpose: Extracts and converts text from an image into editable and searchable text.\n"
+                    "Purpose: Extracts and displays text from an image.\n"
         )
     }
     LaunchedEffect(Unit) {
@@ -110,7 +110,7 @@ fun InstructionScreen() {
                         fontWeight = FontWeight.Bold,
                     ),
                     markdown = """
-                        ${stringResource(id = R.string.app_name)} is an innovative Android application designed to assist blind users by leveraging the power of Gemini AI. The app provides advanced functionalities to enhance accessibility and support daily tasks through voice commands and AI-powered features. It provides four main functionalities:
+                        ${stringResource(id = R.string.app_name)} is an innovative Android application designed to assist blind people by leveraging the power of Gemini AI. The app provides advanced functionalities to enhance accessibility and support daily tasks through voice commands and AI-powered features. It provides four main functionalities:
 
                         1. **Custom Prompt**
                         2. **Custom Prompt with Image**
@@ -149,12 +149,12 @@ fun InstructionScreen() {
 
                         ### 4. Image to Text
 
-                        - **Purpose**: Extracts and converts text from an image into editable and searchable text.
+                        - **Purpose**: Extracts and displays text from an image.
                         - **How to Use**:
                           1. Open the app and go to the image-to-text conversion section.
                           2. Upload or capture an image that contains text.
                           3. Submit the image for text extraction.
-                          4. The app will process the image and provide the extracted text, which you can view, copy, or save.
+                          4. The app will process the image and provide the extracted text for you to view.
 
                     """.trimIndent(),
                     modifier = Modifier
