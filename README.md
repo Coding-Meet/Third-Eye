@@ -1,6 +1,6 @@
 # Third Eye - AI Assistant App for Blind People | Google Gemini API Developer Competition Submission #buildwithgemini
 
-[![Third Eye App Preview](image/thid-eye-app.png)](https://youtu.be/YhWhR6IVs_Y)
+[![Third Eye App Preview](image/thid-eye-app.png)](https://youtu.be/cRTjUSgXhKY?si=1D-FlGa3eUcPhOYR)
 
 Click the image above to watch a demo of the Third Eye App on YouTube.
 
