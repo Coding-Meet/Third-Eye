@@ -70,7 +70,7 @@ Click the image above to watch a demo of the Third Eye App on YouTube.
 4. Add a `local.properties` file to the project root.
 5. Place your Gemini API key in `local.properties` file as `Gemini_API_KEY` property.
 ```properties
-Gemini_API_KEY=YOUR_API_KEY
+Gemini_API_KEY="YOUR_API_KEY"
 ```
 6. Sync the project with Gradle files in Android Studio or IntelliJ IDEA to ensure all dependencies are downloaded.
 7. Build the project by selecting `Build` > `Rebuild Project` from the menu. 
